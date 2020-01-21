@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean scope="singleton" id="process" class="com.brainmentors.los.operation.LOSProcess"></bean>
+
+<bean scope="prototype" id="customer" class="com.brainmentors.los.customer.Customer">
+<property name="personal" ref="personalObj"></property>
+<property name="loanDetails" ref="loanObj"></property>
+<property name="address" ref="addressObj"></property>
+<property name="negativeCustomers">
+<list>
+<ref bean="negativeCustomer1"/>
+<ref bean="negativeCustomer2"/>
+</list>
+</property>
+</bean>
+
+<bean scope="prototype" id="personalObj" class="com.brainmentors.los.customer.PersonalInformation" />
+<bean scope="prototype" id="loanObj" class="com.brainmentors.los.customer.LoanDetails" />
+<bean scope="prototype" id="addressObj" class="com.brainmentors.los.customer.Address" />
+
+<bean lazy-init="false" id="negativeCustomer1" class="com.brainmentors.los.customer.Customer">
+<property name="personal" ref="personalObj1"></property>
+</bean>
+<bean lazy-init="false" id="negativeCustomer2" class="com.brainmentors.los.customer.Customer">
+<property name="personal" ref="personalObj2"></property>
+</bean>
+
+<bean lazy-init="false" id="personalObj1" class="com.brainmentors.los.customer.PersonalInformation">
+<property name="firstName" value="Tom"></property>
+<property name="lastName" value="Dahl"></property>
+<property name="voterId" value="A222"></property>
+<property name="panCard" value="BW2000"></property>
+<property name="phone" value="3333"></property>
+<property name="email" value="tom@gmail.com"></property>
+</bean>
+
+<bean lazy-init="false" id="personalObj2" class="com.brainmentors.los.customer.PersonalInformation">
+<property name="firstName" value="Tim"></property>
+<property name="lastName" value="Jackson"></property>
+<property name="voterId" value="A111"></property>
+<property name="panCard" value="BW1000"></property>
+<property name="phone" value="2222"></property>
+<property name="email" value="tim@gmail.com"></property>
+</bean>
+
+</beans>
