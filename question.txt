@@ -1,0 +1,22 @@
+ N Customers
+Enter the Name
+Id , Name , Gender, Balance
+
+Customer is search by Name
+
+Customer has N Address 
+Enter type of address
+Office (N) Not Duplicate
+Res (N) Not Duplicate
+
+
+Address class is separate
+Enter the order id
+Customer has N Orders (Premaintain)
+Id, name, date 
+Order has N Products
+qty amount name desc rating id price
+Product are sorted by rating , or price
+
+
+
