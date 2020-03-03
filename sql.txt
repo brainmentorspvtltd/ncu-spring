@@ -1,0 +1,6 @@
+create database springjdbctest;
+use springjdbctest;
+create table user_mst(uid integer AUTO_INCREMENT, userid varchar(50) unique not null, password varchar(50) not null, city varchar(30), name varchar(50), status varchar(1) default 'A', PRIMARY KEY(uid));
+desc user_mst;
+insert into user_mst (userid, password, city,name) values('amit','123','delhi','amit');
+select * from user_mst
