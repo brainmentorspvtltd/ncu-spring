@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brainmentors.apps.dao.QuestionDAO;
 import com.brainmentors.apps.models.Question;
@@ -26,6 +27,17 @@ public class QuestionController {
 	public void setQuestionDAO(QuestionDAO questionDAO) {
 		this.questionDAO = questionDAO;
 	}
+	
+	
+	@RequestMapping(path = "/deletequestion",method = RequestMethod.GET)
+	public String deleteQuestionById(@RequestParam("qid") int id, Model model) {
+		//  JDBC Call
+		// Remaining Questions
+		// Question Set in Model and then move to question.jsp
+		System.out.println("Question Id in delete is "+id);
+		return "question";
+	}
+
 
 	@RequestMapping(path = "/question",method = RequestMethod.GET)
 	public String showQuestionAddScreen(@ModelAttribute("questionModel") Question question, Model model) {
