@@ -45,7 +45,11 @@ cursor: pointer;
 		<form:input path="score" cssClass="form-control"/>
 		</div>
 		<div class='form-group'>
+		
 		<button type="submit" class="btn btn-primary">Add</button>
+		<c:if test="${ updateflag =='E'}">
+		<button type="submit" class="btn btn-success">Update</button>
+		</c:if>
 		</div>
 		</form:form>
 		<br/>
@@ -72,7 +76,7 @@ cursor: pointer;
 			<td>${cq.score}</td>
 			<td><a href="deletequestion?qid=${cq.id}"><img src='https://img.icons8.com/cotton/2x/delete-sign--v2.png' class='size'/></a>
 			&nbsp;
-			<img src='https://img.icons8.com/cotton/2x/edit.png' class='size'/>
+			<a href="editquestion?qid=${cq.id}"><img src='https://img.icons8.com/cotton/2x/edit.png' class='size'/></a>
 			</td>
 			
 			</tr>

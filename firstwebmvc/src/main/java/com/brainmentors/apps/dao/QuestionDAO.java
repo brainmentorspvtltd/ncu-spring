@@ -21,9 +21,23 @@ public class QuestionDAO implements QuestionQueries{
 		return result>0?"Question Added ":"Question Not Added";
 		
 	}
+	
+	public Question findById(int id) {
+		Question questionObject = jdbcTemplate.queryForObject(SELECT_BY_ID, new Object[]{id},new QuestionRowMapper());
+		return questionObject;
+	}
+	
 	public List<Question> getAllQuestions(){
 		return jdbcTemplate.query(SELECT_SQL, new QuestionRowMapper());
 	}
+	
+	public String remove(int id) {
+		int result = jdbcTemplate.update(DELETE_SQL, id);
+		return result>0?"Record Deleted":"Record Not Deleted";
+		
+	}
+	
+	// Create Update Function
 }
 
 class QuestionRowMapper implements RowMapper<Question>{

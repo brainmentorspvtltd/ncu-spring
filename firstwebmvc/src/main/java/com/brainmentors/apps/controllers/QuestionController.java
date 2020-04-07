@@ -28,6 +28,18 @@ public class QuestionController {
 		this.questionDAO = questionDAO;
 	}
 	
+	// Create RequestMapping for Update , Call DAO 
+	
+	@RequestMapping(path = "/editquestion", method =  RequestMethod.GET)
+	public String editQuestionById(@RequestParam("qid") int id, Model model) {
+			Question question = questionDAO.findById(id);
+			model.addAttribute("questionModel",question);
+			List<Question> list = questionDAO.getAllQuestions();
+			model.addAttribute("updateflag","E");
+			model.addAttribute("questions", list);
+			return "question";
+			//return "redirect:/question";
+	}
 	
 	@RequestMapping(path = "/deletequestion",method = RequestMethod.GET)
 	public String deleteQuestionById(@RequestParam("qid") int id, Model model) {
@@ -35,7 +47,10 @@ public class QuestionController {
 		// Remaining Questions
 		// Question Set in Model and then move to question.jsp
 		System.out.println("Question Id in delete is "+id);
-		return "question";
+		String msg = questionDAO.remove(id);
+		model.addAttribute("questionModel",new Question());
+		model.addAttribute("msg",msg);
+		return "redirect:/question";
 	}
 
 
