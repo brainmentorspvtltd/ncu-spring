@@ -1,0 +1,36 @@
+User 
+create table user_mst(uid integer not null AUTO_INCREMENT, userid varchar(50) not null unique,password varchar(30) not null, name varchar(100) , address varchar(200), phone varchar(10), email varchar(100), photo varchar(100), status char(1) default 'A', primary key(uid));
+
+insert into user_mst (userid, password , name, address, phone ,email,photo) values('amit','amit123','Amit','Delhi','2222','amit@gmail.com','https://cdn1.iconfinder.com/data/icons/business-users/512/circle-512.png');
+
+Role
+create table role_mst(roleid integer auto_increment not null, name varchar(100) not null unique, descr varchar(300), status char(1) default 'A');
+insert into role_mst (name, descr) values('Teacher','Teacher Can Make Test');
+insert into role_mst (name, descr) values('Student','Student Can give Test');
+
+UserRoleMapping
+create table user_role_mapping(id integer auto_increment not null, uid integer not null, roleid integer not null, foreign key(uid) references user_mst(uid) on delete cascade, foreign key(roleid) references role_mst(roleid), primary key(id), status char(1) default 'A');
+insert into user_role_mapping(uid, roleid)values(1,1);
+
+JOIN Query User Role
+select user.name, phone ,email, role.name from user_mst user, role_mst role, user_role_mapping urmap  where userid='amit' and password='amit123' and user.uid=urmap.uid and role.roleid=urmap.roleid;
+
+Right
+create table right_mst(rightid integer auto_increment not null, name varchar(100) not null unique, descr varchar(300), url varchar(100) not null, status varchar(1) default 'A' , primary key(rightid));
+
+
+Role Right Mapping
+create table role_right_mapping(id integer auto_increment not null, roleid integer, rightid integer, foreign key(roleid) references role_mst(roleid), foreign key(rightid) references right_mst(rightid), primary key(id), status char(1) default 'A');
+
+
+JOIN Query User Role Right
+select user.name, phone ,email, role.name, rights.name, rights.url from user_mst user, role_mst role, user_role_mapping urmap, right_mst rights,role_right_mapping rrmap  where userid='amit' and password='amit123' and user.uid=urmap.uid and role.roleid=urmap.roleid and rrmap.roleid=role.roleid and rrmap.rightid=rights.rightid;
+
+
+
+
+
+
+
+
+
