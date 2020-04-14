@@ -1,5 +1,6 @@
 package com.brainmentors.testengine.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ public class UserController {
 
 	@Autowired
 	private IUserService userService;
+	private Logger logger = Logger.getLogger(UserController.class);
 	
 	@RequestMapping(method = RequestMethod.POST,path = "/login",
 			consumes = {MediaType.APPLICATION_JSON_VALUE},
@@ -29,7 +31,9 @@ public class UserController {
 //		userInfo.setMessage("Login SuccessFully");
 //		System.out.println("##############User Object is "+userObject);
 		//return "{msg:'Hello User U r on Login','user':"+userObject+"}";
+		logger.debug("Inside doLogin "+userObject.getUserid());
 		UserInfo userInfo = userService.login(userObject);
+		logger.debug("After Service call Data is coming  "+userInfo);
 		if(userInfo!=null) {
 			userInfo.setMessage("Login SuccessFully");
 		}

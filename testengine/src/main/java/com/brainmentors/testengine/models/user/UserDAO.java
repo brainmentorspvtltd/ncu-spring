@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,10 +18,13 @@ public class UserDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	static List<Right> rights ;
+	private Logger logger = Logger.getLogger(UserDAO.class);
 	public UserInfo doLogin(User user) {
+		logger.debug("Inside DAO "+user);
 		 rights = new ArrayList<>();
 		List<UserInfo> list  = jdbcTemplate.query(Query.LOGIN_SQL, new Object[] {user.getUserid(), 
 				user.getPassword()},new UserInfoMapper() );
+		logger.debug("After JDBC Call "+list);
 		if(list==null) {
 			return null;
 		}
