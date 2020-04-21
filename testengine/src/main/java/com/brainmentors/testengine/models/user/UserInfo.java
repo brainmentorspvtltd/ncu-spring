@@ -9,10 +9,18 @@ public class UserInfo {
 	private String userid;
 	private String roleName;
 	private String message;
+	private String tokenId;
+	
 	private List<Right> rights;
 	
 	
 	
+	public String getTokenId() {
+		return tokenId;
+	}
+	public void setTokenId(String tokenId) {
+		this.tokenId = tokenId;
+	}
 	public List<Right> getRights() {
 		return rights;
 	}
