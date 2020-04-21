@@ -19,23 +19,48 @@ import com.brainmentors.testengine.models.user.IUserService;
 import com.brainmentors.testengine.models.user.Student;
 import com.brainmentors.testengine.models.user.User;
 import com.brainmentors.testengine.models.user.UserInfo;
+import com.brainmentors.testengine.utils.Lang;
+import com.brainmentors.testengine.utils.MessageBundle;
 
 @RestController
-public class UserController {
+public class UserController implements Lang {
+	@Autowired
+	private MessageBundle messageBundle;
+	
+//	@Autowired
+//	private MessageSource messageSource;
 
 	@Autowired
 	private IUserService userService;
 	private Logger logger = Logger.getLogger(UserController.class);
 	
-	@GetMapping(path = "/dashboard")
+	
+	
+	
+//	public MessageSource getMessageSource() {
+//		return messageSource;
+//	}
+//
+//	public void setMessageSource(MessageSource messageSource) {
+//		this.messageSource = messageSource;
+//	}
+
+	@GetMapping(path = "/dashboard",produces = "text/plain;charset=utf8")
 	//@RequestMapping(method =RequestMethod.GET, path="/dashboard")
 	public String dashBoard(@RequestParam(value = "tokenId",required = false, defaultValue = "")  String token, HttpSession session) {
+		String msg = "";
+		messageBundle.setLang(HINDI);
 		if(session.getId().equals(token)) {
-		return "Welcome User You are on DashBoard Page"+token;
+			msg = messageBundle.getMessage("user.welcome.msg");
+			//msg= messageSource.getMessage("user.welcome.msg", null, null, new Locale("hi"));
+			//return "Welcome User You are on DashBoard Page"+token;
 		}
 		else {
-			return "Invalid User to Access DashBoard Page";
+			msg = messageBundle.getMessage("user.welcome.errormsg");
+			//msg= messageSource.getMessage("user.welcome.errormsg", null, null, new Locale("hi"));
+			//return "Invalid User to Access DashBoard Page";
 		}
+		return msg;
 	}
 	
 	@PostMapping(path="/register",consumes = {MediaType.APPLICATION_JSON_VALUE},
