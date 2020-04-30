@@ -45,6 +45,11 @@ public class UserInfo {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	@Override
+	public String toString() {
+		return "UserInfo [userid=" + userid + ", roleName=" + roleName + ", message=" + message + ", tokenId=" + tokenId
+				+ ", rights=" + rights + "]";
+	}
 	
 
 }

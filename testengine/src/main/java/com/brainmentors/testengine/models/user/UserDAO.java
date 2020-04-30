@@ -11,10 +11,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.brainmentors.testengine.utils.MessageBundle;
 import com.brainmentors.testengine.utils.Query;
 
 @Repository
 public class UserDAO {
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	static List<Right> rights ;
