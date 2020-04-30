@@ -1,0 +1,17 @@
+Step-1 
+Create Question Table
+Create Answer Table
+Create Test_Question Mapping Table (Join Table)
+
+Step-2
+Question RestController —> Question Service —> QuestionHelper —> QuestionDAO
+
+a) add a Question 
+Input : Name , Desc , Options N , Score
+Output : Question Added SuccessFully 
+b) fetch question
+Test Wise Fetch
+Question ID Fetch
+
+Step-3
+Postman Test
