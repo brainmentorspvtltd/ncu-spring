@@ -28,7 +28,12 @@ select user.name, phone ,email, role.name, rights.name, rights.url from user_mst
 
 
 
+TEST QUERY
+create table test(testid integer not null auto_increment , name varchar(100) not null unique, descr varchar(200), duration integer not null, attempts integer default 1, status varchar(1) default 'A', createdby varchar(50), creationtime date, primary key(testid));
 
+
+TEST_USER_MAPPING QUERY
+create table user_test_mapping (id integer auto_increment not null, testid integer not null, uid integer not null, foreign key(testid) references test(testid), foreign key(uid) references user_mst(uid), primary key(id));
 
 
 
